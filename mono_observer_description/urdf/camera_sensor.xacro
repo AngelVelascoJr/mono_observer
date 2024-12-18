@@ -45,7 +45,7 @@
                         <remapping>~/camera_info:=camera_info</remapping>
                     </ros>
                     <camera_name>camera</camera_name>
-                    <frame_name>camera_frame</frame_name>
+                    <frame_name>camera_link</frame_name>
                     <hack_baseline>0.2</hack_baseline>
                 </plugin>
         </sensor>

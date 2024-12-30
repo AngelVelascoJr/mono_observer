@@ -10,14 +10,15 @@ class RobotNode(Node):
     def __init__(self, node_name):
         super().__init__(node_name)
         self.__topic_sub = self.create_subscription(ServoCtrl, '/robot_message', self.__recieve_positions_clbk, 10)
+        self.get_logger().info("started listening")
 
     # recieve data from main pc as topic message
     def __recieve_positions_clbk(self, msg:ServoCtrl):  
-        self.get_logger().info(f"{msg.angles.count} data received")
+        self.get_logger().info(f"{len(msg.angles)} data received")
         self.__i = 0
         for data in msg.angles:
-            self.get_logger().log(f"{self.__i}.- {data}")
-            i += 1
+            self.get_logger().info(f"{self.__i}.- {data}")
+            self.__i += 1
         # send data throughth port to driver
 
 def main(args=None):

@@ -9,7 +9,7 @@ from mono_observer_driver_interface.msg import ServoCtrl
 class RobotNode(Node):
     def __init__(self, node_name):
         super().__init__(node_name)
-        self.__topic_sub = self.create_subscription(ServoCtrl, '/mensaje', self.__recieve_positions_clbk, 10)
+        self.__topic_sub = self.create_subscription(ServoCtrl, '/robot_message', self.__recieve_positions_clbk, 10)
 
     def __recieve_positions_clbk(self, msg:ServoCtrl):
         self.get_logger().info(f"{msg.angles.count} data received")

@@ -34,7 +34,7 @@ you also may encounter the next error while trying to conect to your device
 PermissionError: [Errno 13] Permission denied: '/dev/ttyUSB0'
 ```
 
-in [this](https://techoverflow.net/2022/06/10/how-to-fix-dev-ttyusb0-or-dev-ttyacm0-permission-error/) page they mention to add your user to the dialgroup with the next command and then login and logout or restar
+finaly, in [this](https://techoverflow.net/2022/06/10/how-to-fix-dev-ttyusb0-or-dev-ttyacm0-permission-error/) page they mention to add your user to the dialgroup with the next command and then login and logout or restart your machine
 
 ```sh
 sudo usermod -a -G dialout $USER

@@ -21,8 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             "serial_coms = mono_observer_driver.serial_comunication:main",
-            "topic_test = mono_observer_driver.topic_test:main",
-            "serial_test = mono_observer_driver.serial_pc_to_driver_test:main"
+            "test_topic = mono_observer_driver.topic_test:main",
+            "test_serial = mono_observer_driver.serial_pc_to_driver_test:main"
         ],
     },
 )

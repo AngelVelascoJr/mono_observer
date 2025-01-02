@@ -9,7 +9,7 @@ class TopicTestNode(Node):
     def __init__(self, node_name):
         super().__init__(node_name)
         self.__topic_pub = self.create_publisher(ServoCtrl, '/robot_message', 10)
-        self.__timer = self.create_timer(5, self.__send_rand_positions_clbk)
+        self.__timer = self.create_timer(1, self.__send_rand_positions_clbk)
 
     def __send_rand_positions_clbk(self):  
         self.__values = []

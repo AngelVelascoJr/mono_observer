@@ -27,9 +27,10 @@ class RobotNode(Node):
             message += f'{data}'
             if i < len(msg.angles):
                 message += ','
-        message += ''
-        self.ser.write((f"{message}E").encode())
+        message += 'E'
+        self.ser.write((f"{message}").encode())
         self.get_logger().warning(f"message sended: {message}")
+        # self.get_logger().warning(f"Send successfull, reciebed: {self.ser.read_until(b'E')}")    #Recieve feedback from Dricer with same format
         # send data throughth port to driver
 
 def main(args=None):

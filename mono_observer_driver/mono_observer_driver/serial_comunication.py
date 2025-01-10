@@ -28,10 +28,10 @@ class RobotNode(Node):
             if i < len(msg.angles):
                 message += ','
         message += 'E'
+        # send data throughth port to driver
         self.ser.write((f"{message}").encode())
         self.get_logger().warning(f"message sended: {message}")
         # self.get_logger().warning(f"Send successfull, reciebed: {self.ser.read_until(b'E')}")    #Recieve feedback from Dricer with same format
-        # send data throughth port to driver
 
 def main(args=None):
     rclpy.init(args=args)

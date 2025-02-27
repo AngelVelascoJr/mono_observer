@@ -16,7 +16,7 @@ class RobotNode(Node):
         self.get_logger().info(f"conected to {self.ser.port}, serial conection status: {self.ser.is_open}")
         self.get_logger().info("started listening")
 
-    # recieve data from main pc as topic message
+    # recieve data (angles) from main pc as topic message
     def __recieve_positions_clbk(self, msg:ServoCtrl):  
         self.get_logger().info(f"{len(msg.angles)} data received")
         i = 0

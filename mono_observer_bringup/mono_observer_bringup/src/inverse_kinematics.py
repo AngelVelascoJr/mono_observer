@@ -1,14 +1,23 @@
 #!/usr/bin/env python3
 
 from std_msgs.msg import Int16
-from mono_observer_driver_interface.ms4 import ServoCtrl
+from mono_observer_driver_interface.msg import ServoCtrl
 
 class PosToIK():
-    def __init__(self, Position):
+    def __init__(self):
         pass
 
-    def GetIK(pos) -> :#must be a int16[] and return a ServoCtrl
-        if()
-        for element in pos:
+    # inverse kinematicks for a 3dof (1 rot in z and 2 rotations in x)
+    def GetIK(pos:ServoCtrl) -> ServoCtrl:  # must be a ServoCtrl and return a ServoCtrl
+        _i = 0
+        
+        for element in pos.angles:
+            _i = _i + 1
 
-        return 
+        _i = 0
+        newServoControl = ServoCtrl()
+        for element in pos.angles:
+            newelement = -int(element)
+            newServoControl.angles.append(newelement)
+
+        return newServoControl

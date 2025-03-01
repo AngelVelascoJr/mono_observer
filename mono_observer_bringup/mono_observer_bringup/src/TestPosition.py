@@ -2,7 +2,7 @@
 
 import rclpy
 import inverse_kinematics
-from inverse_kinematics import GetIK
+from inverse_kinematics import PosToIK
 from rclpy.node import Node
 from mono_observer_driver_interface.msg import ServoCtrl
 
@@ -18,11 +18,18 @@ class TestPosition(Node):
 
     def GetTerminalInput(self,Str:str):
         self.ConvertedTrayectoryInput = str.split(Str,",")
+        self.FormatedTrayectoryInput = ServoCtrl()
+        for value in self.ConvertedTrayectoryInput:
+            self.FormatedTrayectoryInput.angles.append(int(value,base=10))
+        self.get_logger().info("Data formated correctly")
 
     def CreateIK(self):
-        self.IK = GetIK(self.ConvertedTrayectoryInput)
+        self.IK = PosToIK.GetIK(pos=self.FormatedTrayectoryInput)
     
     def PublishAngleToTopic(self):
+        self.get_logger().info("publishing data to topic")
+        for value in self.IK.angles:
+            self.get_logger().info(str(value))
         self.trajectory_publisher.publish(self.IK)
         
 
@@ -30,7 +37,7 @@ class TestPosition(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    trajectory_publisher_node = TrajectoryTest()
+    trajectory_publisher_node = TestPosition()
     while True:
         trajectory_publisher_node.GetTerminalInput(input("Write the position to reach( format '##,##,##,...')"))
         trajectory_publisher_node.CreateIK()

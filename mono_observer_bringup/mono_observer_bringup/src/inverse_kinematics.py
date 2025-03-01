@@ -13,7 +13,7 @@ class PosToIK():
         _i = 0
         
         _h_0_1_z = 35
-        _h_0_1_z = 0
+        _h_0_1_x = 0
         _h_1_2 = 
         _h_2_p = 
         
@@ -35,7 +35,7 @@ class PosToIK():
         #para el angulo 1_Theta_2
         alpha = 180-angle3
         _h_1_p = math.sqrt(pow(_h_1_2,2)+pow(_h_2_p,2)-2*_h_1_2*_h_2_p*math.cos(alpha))
-        angle2 = (math.atan2((pos.angles[2]-_h_0_1_z)/(pos.angles[1]-_h_0_1_z))) - (math.acos((-pow(_h_2_p,2)+pow(_h_1_2,2)+pow(_h_1_p,2))/(2*_h_1_2*_h_1_p)))
+        angle2 = (math.atan2((pos.angles[2]-_h_0_1_z)/(pos.angles[0]-_h_0_1_x))) - (math.acos((-pow(_h_2_p,2)+pow(_h_1_2,2)+pow(_h_1_p,2))/(2*_h_1_2*_h_1_p)))
 
         newServoControl.angles.append(angle2)
         newServoControl.angles.append(angle3)

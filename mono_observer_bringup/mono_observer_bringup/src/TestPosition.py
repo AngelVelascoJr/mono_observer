@@ -39,7 +39,7 @@ def main(args=None):
     rclpy.init(args=args)
     trajectory_publisher_node = TestPosition()
     while True:
-        trajectory_publisher_node.GetTerminalInput(input("Write the position to reach( format '##,##,##,...')"))
+        trajectory_publisher_node.GetTerminalInput(input("Write the position to reach [mm]( format '##,##,##,...')"))
         trajectory_publisher_node.CreateIK()
         trajectory_publisher_node.PublishAngleToTopic()
 

@@ -12,10 +12,10 @@ class PosToIK():
     def GetIK(pos:ServoCtrl) -> ServoCtrl:  # must be a ServoCtrl and return a ServoCtrl
         _i = 0
         
-        _h_0_1_z = 35
+        _h_0_1_z = 50
         _h_0_1_x = 0
-        _h_1_2 = 
-        _h_2_p = 
+        _h_1_2 = 87.5
+        _h_2_p = 100
         
 
 

@@ -6,7 +6,7 @@
         <visual>
             <origin xyz="0 0 0.01" rpy="0 0 0"/>
             <geometry>
-                <box size="0.1 0.1 0.02"/>
+                <mesh filename="${base_mesh}"/>
             </geometry>
             <material name="">
                 <color rgba="0.7 0.7 0.7 1"/>

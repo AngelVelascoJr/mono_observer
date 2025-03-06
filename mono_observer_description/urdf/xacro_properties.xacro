@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" >
+
+    <xacro:property name="base_mesh" value="package://mono_observer_description/meshes/stl_V1/Base.stl"/>
+
+</robot>

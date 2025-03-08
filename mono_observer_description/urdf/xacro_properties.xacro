@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" >
+
+    <xacro:property name="base_mesh" value="package://mono_observer_description/meshes/Base.stl"/>
+    <xacro:property name="cintura_mesh" value="package://mono_observer_description/meshes/Cintura.stl"/>
+    <xacro:property name="antebrazo_mesh" value="package://mono_observer_description/meshes/Antebrazo.stl"/>
+    <xacro:property name="soporte_camara_mesh" value="package://mono_observer_description/meshes/Camara.stl"/>
+
+</robot>

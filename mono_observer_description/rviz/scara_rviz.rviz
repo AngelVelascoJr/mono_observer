@@ -108,7 +108,7 @@ Visualization Manager:
           Value: true
         link_3:
           Value: true
-      Marker Scale: 0.5
+      Marker Scale: 0.1
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -167,7 +167,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 5.659110069274902
+      Distance: 0.305435
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1

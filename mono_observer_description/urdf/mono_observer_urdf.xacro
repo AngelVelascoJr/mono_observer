@@ -4,9 +4,9 @@
 
     <link name="base_link">
         <visual>
-            <origin xyz="0 0 0.01" rpy="0 0 0"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <box size="0.1 0.1 0.02"/>
+                <mesh filename="${base_mesh}"/>
             </geometry>
             <material name="">
                 <color rgba="0.7 0.7 0.7 1"/>
@@ -22,9 +22,9 @@
 
     <link name="link_1">
         <visual>
-            <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            <origin xyz="0 0 -0.05" rpy="0 0 0"/>
             <geometry>
-                <box size="0.03 0.03 0.1"/>
+                <mesh filename="${cintura_mesh}"/>
             </geometry>
             <material name="">
                 <color rgba="1 0 0 1"/>
@@ -40,9 +40,9 @@
     
     <link name="link_2">
         <visual>
-            <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            <origin xyz="0 0 -0.08" rpy="0 0 0"/>
             <geometry>
-                <box size="0.03 0.03 0.1"/>
+                <mesh filename="${antebrazo_mesh}"/>
             </geometry>
             <material name="">
                 <color rgba="0 1 0 1"/>
@@ -58,9 +58,9 @@
     
     <link name="link_3">
         <visual>
-            <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            <origin xyz="0 0 -0.15" rpy="0 0 0"/>
             <geometry>
-                <box size="0.03 0.03 0.1"/>
+                <mesh filename="${soporte_camara_mesh}"/>
             </geometry>
             <material name="">
                 <color rgba="0 0 1 1"/>
@@ -76,7 +76,7 @@
     
 
     <joint name="base_1_joint" type="revolute">
-        <origin xyz="0 0 0.02" rpy="0 0 0"/>
+        <origin xyz="0 0 0.05" rpy="0 0 0"/>
         <parent link="base_link"/>
         <child link="link_1"/>
         <axis xyz="0 0 1" rpy="0 0 0"/>
@@ -84,19 +84,19 @@
     </joint>
 
     <joint name="1_2_joint" type="revolute">
-        <origin xyz="0 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0 0 0.03" rpy="0 0 0"/>
         <parent link="link_1"/>
         <child link="link_2"/>
-        <axis xyz="1 0 0" rpy="0 0 0"/>
-        <limit effort="30" velocity="1.0" lower="-1.5708" upper="1.5708" />
+        <axis xyz="0 1 0" rpy="0 0 0"/>
+        <limit effort="30" velocity="1.0" lower="0" upper="3.1416" />
     </joint>
 
     <joint name="2_3_joint" type="revolute">
-        <origin xyz="0 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0 0 0.071" rpy="0 0 0"/>
         <parent link="link_2"/>
         <child link="link_3"/>
-        <axis xyz="1 0 0" rpy="0 0 0"/>
-        <limit effort="30" velocity="1.0" lower="-1.5708" upper="1.5708" />
+        <axis xyz="0 1 0" rpy="0 0 0"/>
+        <limit effort="30" velocity="1.0" lower="0" upper="3.1416" />
     </joint>
     
 </robot>

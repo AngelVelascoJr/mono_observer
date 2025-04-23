@@ -15,7 +15,14 @@ find_package(rclpy REQUIRED) #for python scripts
 #find_package(tf2 REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(control_msgs REQUIRED) #for ros control
-#find_package(rclcpp_action REQUIRED) #for ros control actions
+
+find_package(mujoco_ros2_control REQUIRED)
+
+install(
+DIRECTORY launch rviz src
+DESTINATION share/${PROJECT_NAME}/
+)
+
 
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})

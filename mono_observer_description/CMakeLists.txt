@@ -9,7 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY launch rviz urdf config meshes
+  DIRECTORY launch rviz urdf config meshes mujoco_models
   DESTINATION share/${PROJECT_NAME}/
 )
 

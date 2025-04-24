@@ -8,7 +8,7 @@
             <geometry>
                 <mesh filename="${base_mesh}"/>
             </geometry>
-            <material name="">
+            <material name="gray">
                 <color rgba="0.7 0.7 0.7 1"/>
             </material>
         </visual>
@@ -26,7 +26,7 @@
             <geometry>
                 <mesh filename="${cintura_mesh}"/>
             </geometry>
-            <material name="">
+            <material name="red">
                 <color rgba="1 0 0 1"/>
             </material>
         </visual>
@@ -44,7 +44,7 @@
             <geometry>
                 <mesh filename="${antebrazo_mesh}"/>
             </geometry>
-            <material name="">
+            <material name="green">
                 <color rgba="0 1 0 1"/>
             </material>
         </visual>
@@ -62,7 +62,7 @@
             <geometry>
                 <mesh filename="${soporte_camara_mesh}"/>
             </geometry>
-            <material name="">
+            <material name="blue">
                 <color rgba="0 0 1 1"/>
             </material>
         </visual>

@@ -1,4 +1,6 @@
-# Guia de uso urdf2mjcf
+# Converting urdf to mjcf
+
+# 1. Guia de uso urdf2mjcf
 
 obtenido de: https://docs.kscale.dev/docs/urdf2mjcf
 
@@ -33,3 +35,7 @@ run(
     copy_meshes=True,
 )
 ```
+
+# 2. Modificar mjcf creado
+
+una vez creado el modelo mjcf, se cambian las 

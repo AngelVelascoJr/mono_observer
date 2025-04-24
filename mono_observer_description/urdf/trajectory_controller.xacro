@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Aqui comienza el robot-->
+<robot name="mono_observer" xmlns:xacro="http://ros.org/wiki/xacro" >
+
+    <ros2_control name="MujocoSystem" type="system">
+        <hardware>
+            <plugin>mujoco_ros2_control/MujocoSystem</plugin>
+        </hardware>
+        <joint name="base_1_joint">
+            <command_interface name="position" />
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+        <joint name="1_2_joint">
+            <command_interface name="position"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+        <joint name="2_3_joint">
+            <command_interface name="position"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+    </ros2_control>
+
+    <!--Pluging de control-->
+    <plugin name="control_plugin" filename="libmujoco_system_plugins.so" >
+        <robot_param>robot_description</robot_param>
+        <robot_param_node>robot_state_publisher</robot_param_node>
+        <parameters>$(find ${package_name})/config/trajectory_controller.yaml</parameters>
+    </plugin>
+
+
+</robot>

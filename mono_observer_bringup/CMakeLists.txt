@@ -29,9 +29,10 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables #They must start with the shebag tag
 install(PROGRAMS
-  ${PROJECT_NAME}/src/TestPosition.py
+  ${PROJECT_NAME}/src/TestIKPosition.py
   ${PROJECT_NAME}/src/inverse_kinematics.py
   ${PROJECT_NAME}/src/IKTest.py
+  ${PROJECT_NAME}/src/Test_multi_tray.py
   DESTINATION lib/${PROJECT_NAME} )
 
 ament_package()

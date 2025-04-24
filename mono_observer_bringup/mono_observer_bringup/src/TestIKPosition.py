@@ -4,6 +4,8 @@ import rclpy
 import inverse_kinematics
 from inverse_kinematics import PosToIK
 from rclpy.node import Node
+from builtin_interfaces.msg import Duration
+from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from mono_observer_driver_interface.msg import ServoCtrl
 
 class TestPosition(Node):
@@ -11,26 +13,37 @@ class TestPosition(Node):
     def __init__(self):
         super().__init__('test_position')
         topic_name= "/mono_observer_trajectory_controller/joint_trajectory"
-        self.TerminalInput = ""        
-        self.trajectory_publisher = self.create_publisher(ServoCtrl, topic_name,10) #Esta mal, necesita otro tipo de mensajes para funcionar xd
-        #self.timer = self.create_timer(1, self.timer_callback)
+        self.TerminalInput = ""
+        self.PositionList = []
+        self.trajectory_publisher = self.create_publisher(JointTrajectory, topic_name,10) #Esta mal, necesita otro tipo de mensajes para funcionar xd
+        self.joints = ['base_1_joint', '1_2_joint', '2_3_joint']
         self.get_logger().info(f"Node publishing in {topic_name}, waiting for imput...")
 
     def GetTerminalInput(self,Str:str):
         self.ConvertedTrayectoryInput = str.split(Str,",")
-        self.FormatedTrayectoryInput = ServoCtrl()
+        self.UnityMessage = ServoCtrl()
+        self.TrayectoryMessage = JointTrajectory()
+        self.TrayectoryMessage.joint_names = self.joints
         for value in self.ConvertedTrayectoryInput:
-            self.FormatedTrayectoryInput.angles.append(int(value,base=10))
-        self.get_logger().info("Data formated correctly")
+            self.PositionList.append(int(value,base=10))
+            self.UnityMessage.angles.append(int(value,base=10))
+        self.get_logger().info("Data formated")
 
     def CreateIK(self):
-        self.IK = PosToIK.GetIK(pos=self.FormatedTrayectoryInput)
+        self.IK = PosToIK.GetIK(pos=self.UnityMessage)
     
     def PublishAngleToTopic(self):
-        self.get_logger().info("publishing data to topic")
+        point = JointTrajectoryPoint()
+        angleFloatArray = []
         for value in self.IK.angles:
+            angleFloatArray.append(float(value))
             self.get_logger().info(str(value))
-        self.trajectory_publisher.publish(self.IK)
+        point.positions = angleFloatArray
+        point.time_from_start = Duration(sec=2)
+        self.TrayectoryMessage.points.append(point)
+        self.get_logger().info("publishing data to topic")
+        self.trajectory_publisher.publish(self.TrayectoryMessage)
+        #self.trajectory_publisher.publish(self.IK)
         
 
         

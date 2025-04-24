@@ -10,11 +10,11 @@ class TestPosition(Node):
 
     def __init__(self):
         super().__init__('test_position')
-        topic_name= "/robot_message"
+        topic_name= "/mono_observer_trajectory_controller/joint_trajectory"
         self.TerminalInput = ""        
-        self.trajectory_publisher = self.create_publisher(ServoCtrl, topic_name,10)
+        self.trajectory_publisher = self.create_publisher(ServoCtrl, topic_name,10) #Esta mal, necesita otro tipo de mensajes para funcionar xd
         #self.timer = self.create_timer(1, self.timer_callback)
-        self.get_logger().info("Node working, waiting for imput...")
+        self.get_logger().info(f"Node publishing in {topic_name}, waiting for imput...")
 
     def GetTerminalInput(self,Str:str):
         self.ConvertedTrayectoryInput = str.split(Str,",")

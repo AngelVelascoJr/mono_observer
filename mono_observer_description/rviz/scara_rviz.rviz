@@ -51,7 +51,7 @@ Visualization Manager:
       Value: true
     - Alpha: 0.5
       Class: rviz_default_plugins/RobotModel
-      Collision Enabled: false
+      Collision Enabled: true
       Description File: ""
       Description Source: Topic
       Description Topic:
@@ -185,7 +185,7 @@ Visualization Manager:
       Pitch: 0.23039773106575012
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.6853976249694824
+      Yaw: 4.6853976249694824
     Saved: ~
 Window Geometry:
   Displays:

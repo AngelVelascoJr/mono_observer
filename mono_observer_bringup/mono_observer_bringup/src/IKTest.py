@@ -9,13 +9,13 @@ class IKTestNode():
         for x in range(150):
             for y in range(150):
                 for z in range(150):
-                    srvctrl = ServoCtrl()
-                    srvctrl.angles.append(x)
-                    srvctrl.angles.append(y)
-                    srvctrl.angles.append(z)
+                    srvctrl = []
+                    srvctrl.append(x)
+                    srvctrl.append(y)
+                    srvctrl.append(z)
                     self.IK = PosToIK.GetIK(pos=srvctrl)
                     
-                    print(f"({x},{y},{z}= {self.IK.angles[0]} , {self.IK.angles[1]} , {self.IK.angles[2]}")
+                    print(f"({x},{y},{z}= {self.IK[0]} , {self.IK[1]} , {self.IK[2]}")
 
 
 def main(args=None):

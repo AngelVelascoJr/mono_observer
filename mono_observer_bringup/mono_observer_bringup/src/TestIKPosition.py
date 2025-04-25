@@ -31,12 +31,12 @@ class TestPosition(Node):
         self.get_logger().info("Data formated")
 
     def CreateIK(self):
-        self.IK = PosToIK.GetIK(pos=self.UnityMessage)
+        self.IK = PosToIK.GetIK(pos=self.UnityMessage.angles)
     
     def PublishAngleToTopic(self):
         point = JointTrajectoryPoint()
         angleFloatArray = []
-        for value in self.IK.angles:
+        for value in self.IK:
             angleFloatArray.append(radians(value))
             self.get_logger().info(f"{value}: {radians(value)}")
         point.positions = angleFloatArray

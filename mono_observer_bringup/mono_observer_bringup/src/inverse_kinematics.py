@@ -34,7 +34,7 @@ class PosToIK():
         try:
             #para el angulo 0_Theta_1
             angle1 = math.atan2(pos.angles[1],pos.angles[0])
-            newServoControl.angles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle1),180,0))
+            newServoControl.angles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle1),90,-90))
 
             #para el angulo 2_Theta_3
             angle3 = math.acos((pow(pos.angles[0],2)+pow((pos.angles[2]-_h_0_1_z),2)-pow(_h_1_2,2)-pow(_h_2_p,2))/(2*_h_1_2*_h_2_p))
@@ -44,8 +44,8 @@ class PosToIK():
             _h_1_p = math.sqrt(pow(_h_1_2,2)+pow(_h_2_p,2)-2*_h_1_2*_h_2_p*math.cos(alpha))
             angle2 = (math.atan2((pos.angles[2]-_h_0_1_z),(pos.angles[0]-_h_0_1_x))) - (math.acos((-pow(_h_2_p,2)+pow(_h_1_2,2)+pow(_h_1_p,2))/(2*_h_1_2*_h_1_p)))
 
-            newServoControl.angles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle2),180,0))
-            newServoControl.angles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle3),180,0))
+            newServoControl.angles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle2),90,-90))
+            newServoControl.angles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle3),90,-90))
             return newServoControl
         except Exception as e:
             print(f"Error al realizar el calculo de {pos.angles[0]},{pos.angles[1]},{pos.angles[2]}: {e}")

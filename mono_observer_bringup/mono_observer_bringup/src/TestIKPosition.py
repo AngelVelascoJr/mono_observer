@@ -2,6 +2,7 @@
 
 import rclpy
 import inverse_kinematics
+from math import radians
 from inverse_kinematics import PosToIK
 from rclpy.node import Node
 from builtin_interfaces.msg import Duration
@@ -36,8 +37,8 @@ class TestPosition(Node):
         point = JointTrajectoryPoint()
         angleFloatArray = []
         for value in self.IK.angles:
-            angleFloatArray.append(float(value))
-            self.get_logger().info(str(value))
+            angleFloatArray.append(radians(value))
+            self.get_logger().info(f"{value}: {radians(value)}")
         point.positions = angleFloatArray
         point.time_from_start = Duration(sec=2)
         self.TrayectoryMessage.points.append(point)

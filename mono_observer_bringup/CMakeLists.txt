@@ -32,6 +32,7 @@ install(PROGRAMS
   ${PROJECT_NAME}/src/TestIKPosition.py
   ${PROJECT_NAME}/src/inverse_kinematics.py
   ${PROJECT_NAME}/src/IKTest.py
+  ${PROJECT_NAME}/src/TestAllAngles.py
   ${PROJECT_NAME}/src/Test_multi_tray.py
   DESTINATION lib/${PROJECT_NAME} )
 

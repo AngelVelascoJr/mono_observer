@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<robot name="mono_observer" xmlns:xacro="http://ros.org/wiki/xacro">
+    <mujoco>
+        <compiler meshdir="../meshes/" discardvisual="false"/>
+    </mujoco>
+</robot>

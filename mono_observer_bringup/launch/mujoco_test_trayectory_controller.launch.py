@@ -47,7 +47,7 @@ def generate_launch_description():
         parameters=[
             {'robot_description':robot_description},
             controller_config_file,
-            {'mujoco_model_path':mujoco_models_path} # aqui es como el world
+            {'mujoco_model_path':mujoco_models_path}, # aqui es como el world
         ]
     )
 

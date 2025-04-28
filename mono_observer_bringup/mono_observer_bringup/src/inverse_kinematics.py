@@ -27,7 +27,7 @@ class PosToIK():
         try:
             #para el angulo 0_Theta_1
             angle1 = math.atan2(pos[1],pos[0])
-            ServoAngles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle1),90,-90))
+            ServoAngles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle1),0,-180))
 
             #para el angulo 2_Theta_3
             angle3 = math.acos((pow(pos[0],2)+pow((pos[2]-_h_0_1_z),2)-pow(_h_1_2,2)-pow(_h_2_p,2))/(2*_h_1_2*_h_2_p))
@@ -37,7 +37,7 @@ class PosToIK():
             _h_1_p = math.sqrt(pow(_h_1_2,2)+pow(_h_2_p,2)-2*_h_1_2*_h_2_p*math.cos(alpha))
             angle2 = (math.atan2((pos[2]-_h_0_1_z),(pos[0]-_h_0_1_x))) - (math.acos((-pow(_h_2_p,2)+pow(_h_1_2,2)+pow(_h_1_p,2))/(2*_h_1_2*_h_1_p)))
 
-            ServoAngles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle2) -90,90,-90))
+            ServoAngles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle2),90,-90))
             ServoAngles.append(PosToIK.clamp(PosToIK.ToAngleInt(angle3),90,-90))
             return ServoAngles
         except Exception as e:

@@ -5,7 +5,8 @@ import inverse_kinematics
 from math import radians
 from inverse_kinematics import PosToIK
 from rclpy.node import Node
-from builtin_interfaces.msg import Duration
+from example_interfaces.msg import Float32MultiArray
+from builtin_interfaces.msg import Duration 
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from mono_observer_driver_interface.msg import ServoCtrl
 
@@ -13,21 +14,26 @@ class TestPosition(Node):
 
     def __init__(self):
         super().__init__('test_position')
-        topic_name= "/mono_observer_trajectory_controller/joint_trajectory"
+        trayectory_topic_name= "/mono_observer_trajectory_controller/joint_trajectory"
+        marker_topic_name= "/pos_to_marker"
         self.TerminalInput = ""
         self.PositionList = []
-        self.trajectory_publisher = self.create_publisher(JointTrajectory, topic_name,10) #Esta mal, necesita otro tipo de mensajes para funcionar xd
+        self.trajectory_publisher = self.create_publisher(JointTrajectory, trayectory_topic_name,10)
+        self.ToMarkerPublisher = self.create_publisher(Float32MultiArray, marker_topic_name, 10)
         self.joints = ['base_1_joint', '1_2_joint', '2_3_joint']
-        self.get_logger().info(f"Node publishing in {topic_name}, waiting for input...")
+        self.get_logger().info(f"Node publishing in {trayectory_topic_name}, waiting for input...")
 
     def GetTerminalInput(self,Str:str):
         self.ConvertedTrayectoryInput = str.split(Str,",")
         self.UnityMessage = ServoCtrl()
         self.TrayectoryMessage = JointTrajectory()
+        self.ToMarkerMessage = Float32MultiArray()
         self.TrayectoryMessage.joint_names = self.joints
         for value in self.ConvertedTrayectoryInput:
             self.PositionList.append(int(value,base=10))
             self.UnityMessage.angles.append(int(value,base=10))
+            self.ToMarkerMessage.data.append(float(value))
+
         self.get_logger().info("Data formated")
 
     def CreateIK(self):
@@ -44,6 +50,8 @@ class TestPosition(Node):
         self.TrayectoryMessage.points.append(point)
         self.get_logger().info("publishing data to topic")
         self.trajectory_publisher.publish(self.TrayectoryMessage)
+
+        self.ToMarkerPublisher.publish(self.ToMarkerMessage)
         #self.trajectory_publisher.publish(self.IK)
         
 

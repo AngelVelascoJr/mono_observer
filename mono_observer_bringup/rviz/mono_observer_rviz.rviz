@@ -7,7 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
-        - /TF1
+        - /Marker1
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz_common/Selection
@@ -108,7 +108,7 @@ Visualization Manager:
           Value: true
         link_3:
           Value: true
-      Marker Scale: 0.1
+      Marker Scale: 0.10000000149011612
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -121,6 +121,19 @@ Visualization Manager:
                 {}
       Update Interval: 0
       Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: false
+      Name: Marker
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /marker_topic
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -167,7 +180,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 0.305435
+      Distance: 0.3054350018501282
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -176,7 +189,7 @@ Visualization Manager:
       Focal Point:
         X: 0
         Y: 0
-        Z: 0.1
+        Z: 0.10000000149011612
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
@@ -185,7 +198,7 @@ Visualization Manager:
       Pitch: 0.23039773106575012
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.6853976249694824
+      Yaw: 4.685397624969482
     Saved: ~
 Window Geometry:
   Displays:

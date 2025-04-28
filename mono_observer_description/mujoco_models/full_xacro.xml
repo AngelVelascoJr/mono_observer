@@ -1,74 +1,33 @@
 <mujoco model="mono_observer">
-  <option iterations="50" timestep="0.001" solver="PGS" gravity="0 0 -9.81" />
+  <compiler angle="radian" meshdir="../meshes/"/>
 
-  <compiler angle="radian" meshdir="meshes" eulerseq="zyx" autolimits="true" />
-
-  <default>
-    <joint limited="true" damping="0.01" armature="0.01" frictionloss="0.01" />
-    <geom condim="4" contype="1" conaffinity="15" friction="0.9 0.2 0.2" solref="0.001 2" />
-    <motor ctrllimited="true" />
-    <equality solref="0.001 2" />
-    <default class="visualgeom">
-      <geom condim="1" contype="0" conaffinity="0" group="1"/>
-    </default>
-    <default class="collision">
-      <geom type="mesh" group="3"/>
-    </default>
-  </default>
+  <asset>
+    <mesh name="Base" content_type="model/stl" file="Base.stl"/>
+    <mesh name="Cintura" content_type="model/stl" file="Cintura.stl"/>
+    <mesh name="Antebrazo" content_type="model/stl" file="Antebrazo.stl"/>
+    <mesh name="Camara" content_type="model/stl" file="Camara.stl"/>
+  </asset>
 
   <worldbody>
-    <light directional="true" diffuse="0.4 0.4 0.4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false" />
-    <light directional="true" diffuse="0.6 0.6 0.6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1" />
-    <geom name="ground" type="plane" pos="0 0 0" size="100 100 0.001" quat="1 0 0 0" material="matplane" condim="3" conaffinity="15" />
-    <camera name="fixed" pos="0 -3.0 0.5" xyaxes="1 0 0 0 0 1" />
-    <camera name="track" mode="trackcom" pos="0 -3.0 0.5" xyaxes="1 0 0 0 0 1" />
-    <body name="root" pos="0 0 -0.0" quat="1 0 0 0">
-      <freejoint name="root" />
-      <site name="imu" size="0.01" pos="0 0 0" />
-      <geom size="0.05 0.05 0.01" pos="0 0 0.01" rgba="0.7 0.7 0.7 1" class="visualgeom" mesh="base_mesh"/>
-      <geom class="collision" mesh="base_mesh"/>
-      <body name="link_1" pos="0 0 0.05">
-        <joint name="base_1_joint" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708" actuatorfrcrange="-30 30" />
-        <geom size="0.005 0.005 0.05" pos="0 0 0.05" rgba="1 0 0 1" class="visualgeom" mesh="link_1_mesh" />
-        <body name="link_2" pos="0 0 0.03">
-          <joint name="1_2_joint" pos="0 0 0" axis="0 1 0" range="-1.5708 1.5708" actuatorfrcrange="-30 30" />
-          <geom size="0.005 0.005 0.05" pos="0 0 0.05"  rgba="0 1 0 1" class="visualgeom" mesh="link_2_mesh" />
-          <body name="link_3" pos="0 0 0.071">
-            <joint name="2_3_joint" pos="0 0 0" axis="0 1 0" range="-1.5708 1.5708" actuatorfrcrange="-30 30" />
-            <geom size="0.005 0.005 0.05" pos="0 0 0.05" rgba="0 0 1 1" class="visualgeom" mesh="link_3_mesh" />
-          </body>
+    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.7 0.7 0.7 1" mesh="Base"/>
+    <geom size="0.03 0.015 0.02" pos="-0.0075 0 0.02" type="box" rgba="0.7 0.7 0.7 1"/>
+    <body name="link_1" pos="0 0 0.05">
+      <inertial pos="0 0 0" mass="0.02" diaginertia="1 1 1"/>
+      <joint name="base_1_joint" pos="0 0 0" axis="0 0 1" range="-3.1415 0" actuatorfrcrange="-30 30"/>
+      <geom pos="0 0 -0.05" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 0 0 1" mesh="Cintura"/>
+      <geom size="0.015 0.015 0.005" type="box" rgba="1 0 0 1"/>
+      <body name="link_2" pos="0 0 0.03" quat="0.707105 0 0.707108 0">
+        <inertial pos="0 0 0" mass="0.02" diaginertia="1 1 1"/>
+        <joint name="1_2_joint" pos="0 0 0" axis="0 1 0" range="-3.1415 0" actuatorfrcrange="-30 30"/>
+        <geom pos="0 0 -0.08" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0 1 0 1" mesh="Antebrazo"/>
+        <geom size="0.02 0.015 0.025" pos="0 0 0.01" type="box" rgba="0 1 0 1"/>
+        <body name="link_3" pos="0 0 0.071" quat="0.707105 0 0.707108 0">
+          <inertial pos="0 0 0" mass="0.02" diaginertia="1 1 1"/>
+          <joint name="2_3_joint" pos="0 0 0" axis="0 1 0" range="-3.1415 0" actuatorfrcrange="-30 30"/>
+          <geom pos="0 0 -0.15" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0 0 1 1" mesh="Camara"/>
+          <geom size="0.02 0.015 0.025" pos="0 0 0.0075" type="box" rgba="0 0 1 1"/>
         </body>
       </body>
     </body>
   </worldbody>
-
-  <asset>
-    <texture name="texplane" type="2d" builtin="checker" rgb1=".0 .0 .0" rgb2=".8 .8 .8" width="100" height="100" />
-    <material name="matplane" reflectance="0." texture="texplane" texrepeat="1 1" texuniform="true" />
-    <mesh name="base_mesh" file="Base.stl"/>
-    <mesh name="link_1_mesh" file="Cintura.stl"/>
-    <mesh name="link_2_mesh" file="Antebrazo.stl"/>
-    <mesh name="link_3_mesh" file="Camara.stl"/>
-
-  </asset>
-
-  <actuator>
-    <motor name="base_1_joint" joint="base_1_joint" ctrllimited="true" ctrlrange="-30 30" gear="1" />
-    <motor name="1_2_joint" joint="1_2_joint" ctrllimited="true" ctrlrange="-30 30" gear="1" />
-    <motor name="2_3_joint" joint="2_3_joint" ctrllimited="true" ctrlrange="-30 30" gear="1" />
-  </actuator>
-
-  <sensor>
-    <actuatorpos name="base_1_joint_p" actuator="base_1_joint" />
-    <actuatorvel name="base_1_joint_v" actuator="base_1_joint" />
-    <actuatorfrc name="base_1_joint_f" actuator="base_1_joint" noise="0.001" />
-    <actuatorpos name="1_2_joint_p" actuator="1_2_joint" />
-    <actuatorvel name="1_2_joint_v" actuator="1_2_joint" />
-    <actuatorfrc name="1_2_joint_f" actuator="1_2_joint" noise="0.001" />
-    <actuatorpos name="2_3_joint_p" actuator="2_3_joint" />
-    <actuatorvel name="2_3_joint_v" actuator="2_3_joint" />
-    <actuatorfrc name="2_3_joint_f" actuator="2_3_joint" noise="0.001" />
-    <framequat name="orientation" objtype="site" noise="0.001" objname="imu" />
-    <gyro name="angular-velocity" site="imu" noise="0.005" cutoff="34.9" />
-  </sensor>
 </mujoco>

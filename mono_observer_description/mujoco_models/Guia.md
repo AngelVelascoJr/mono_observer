@@ -1,6 +1,8 @@
 # Converting urdf to mjcf
 
-# 1. Guia de uso urdf2mjcf
+
+
+# 1. urdf2mjcf
 
 obtenido de: https://docs.kscale.dev/docs/urdf2mjcf
 
@@ -39,3 +41,8 @@ run(
 # 2. Modificar mjcf creado
 
 una vez creado el modelo mjcf, se cambian las 
+
+
+# Notas generales
+
+la ```meshdir``` es el camino relativo al archivo ```.urdf``` mientras que no hacepta redireccionamientos del tipo ```package://```, por lo que una vez generado el urdf completo, es necesario modificar las direcciones de las mayas 

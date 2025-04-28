@@ -38,7 +38,7 @@ def generate_launch_description():
 
     controller_config_file = os.path.join(get_package_share_path('mono_observer_description'), 'config', 'trajectory_controller.yaml')
 
-    mujoco_models_path = os.path.join(get_package_share_path('mono_observer_description'), 'mujoco_models', 'full_xacro.xml')
+    mujoco_models_path = os.path.join(get_package_share_path('mono_observer_description'), 'mujoco_models', 'full_xacro.urdf')
 
     node_mujoco_ros2_control = Node(
         package='mujoco_ros2_control',

@@ -10,12 +10,13 @@ from builtin_interfaces.msg import Duration
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from mono_observer_driver_interface.msg import ServoCtrl
 
+#Esta mal, necesita modificar las posiciones a -180 0 y +-90
 class TestPosition(Node):
 
     def __init__(self):
         super().__init__('test_position')
         topic_name= "/mono_observer_trajectory_controller/joint_trajectory"
-        self.trajectory_publisher = self.create_publisher(JointTrajectory, topic_name,10) #Esta mal, necesita otro tipo de mensajes para funcionar xd
+        self.trajectory_publisher = self.create_publisher(JointTrajectory, topic_name,10)
         self.joints = ['base_1_joint', '1_2_joint', '2_3_joint']
         self.get_logger().info(f"Node publishing in {topic_name}")
 

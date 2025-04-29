@@ -31,6 +31,7 @@ ament_python_install_package(${PROJECT_NAME})
 install(PROGRAMS
   ${PROJECT_NAME}/src/TestIKPosition.py
   ${PROJECT_NAME}/src/TestIKInputPosition.py
+  ${PROJECT_NAME}/src/TestInputAngle.py
   ${PROJECT_NAME}/src/inverse_kinematics.py
   ${PROJECT_NAME}/src/IKTest.py
   ${PROJECT_NAME}/src/TestAllAngles.py

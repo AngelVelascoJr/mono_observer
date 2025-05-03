@@ -37,6 +37,7 @@ install(PROGRAMS
   ${PROJECT_NAME}/src/TestAllAngles.py
   ${PROJECT_NAME}/src/Test_multi_tray.py
   ${PROJECT_NAME}/src/AddMarker.py
+  ${PROJECT_NAME}/src/ToUnity.py
   DESTINATION lib/${PROJECT_NAME} )
 
 ament_package()

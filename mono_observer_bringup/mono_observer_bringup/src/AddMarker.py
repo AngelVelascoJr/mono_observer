@@ -18,7 +18,7 @@ class AddMarkerNode(Node):
         self.get_logger().info(f"Node publishing in {publish_topic_name}, listening from {subscribe_topic_name}")
 
     def TrajectoryToMarker(self, data_array:Float32MultiArray):
-        print(f"publishing: {data_array}")
+        print(f"publishing data: {data_array.data}")
         marker = Marker()
         marker.header.frame_id = "base_link"
         marker.id = self.i

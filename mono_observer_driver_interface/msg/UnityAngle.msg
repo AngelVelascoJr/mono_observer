@@ -1,4 +1,4 @@
 # interface para el envio de angulos a unity
 # por Angel Velasco
 
-float32[] RadAngles
+float32[] rad_angles

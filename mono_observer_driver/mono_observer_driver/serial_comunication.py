@@ -5,27 +5,27 @@ import serial
 import serial.tools.list_ports as port_list
 
 from rclpy.node import Node
-from mono_observer_driver_interface.msg import ServoCtrl
+from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 class RobotNode(Node):
     def __init__(self, node_name):
         super().__init__(node_name)
-        self.__topic_sub = self.create_subscription(ServoCtrl, '/robot_message', self.__recieve_positions_clbk, 10)
+        self.__topic_sub = self.create_subscription(JointTrajectory, '/mono_observer_trajectory_controller/joint_trajectory', self.__recieve_positions_clbk, 10)
         self.get_logger().info("Trying to connect to port")
         self.ser = serial.Serial(port='/dev/ttyUSB0', baudrate=115200, timeout=3)
         self.get_logger().info(f"conected to {self.ser.port}, serial conection status: {self.ser.is_open}")
         self.get_logger().info("started listening")
 
     # recieve data (angles) from main pc as topic message
-    def __recieve_positions_clbk(self, msg:ServoCtrl):  
-        self.get_logger().info(f"{len(msg.angles)} data received")
+    def __recieve_positions_clbk(self, msg:JointTrajectory):  
+        self.get_logger().info(f"{len(msg.points[0].positions)} data received")
         i = 0
         message = ''
-        for data in msg.angles:
+        for data in msg.points[0].positions:
             self.get_logger().info(f"{i}.- {data}")
             i += 1
             message += f'{data}'
-            if i < len(msg.angles):
+            if i < len(msg.points[0].positions):
                 message += ','
         message += 'E'
         
